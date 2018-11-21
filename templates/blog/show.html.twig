@@ -2,15 +2,10 @@
 
 {% block body %}
     <article>
-        <h2>Titre de l'article</h2>
-        <div class="metadata">Ecrit le 21/11/18 à 19h00 dans la catégorie Politique</div>
+        <h2>{{ article.title }}</h2>
+        <div class="metadata">Ecrit {{ article.createdAt | date('d/m/Y') }} à {{ article.createdAt | date('H:i') }} dans la catégorie Politique</div>
         <div class="content">
-            <img src="http://placehold.it/350x150" alt="">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce mollis elit et euismod vehicula.</p>
-            <p>Nullam in ante non diam pretium malesuada. Maecenas elementum nisi id magna condimentum lacinia.</p>
-            <hr>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce mollis elit et euismod vehicula. Nulla sed lacus malesuada, tristique justo vitae, laoreet orci. Duis velit odio, vehicula imperdiet sagittis ut, dignissim non leo. Nunc convallis varius dolor. Nulla facilisi. Donec non sodales erat, in fringilla enim. Nullam finibus massa nibh, sit amet ornare quam tincidunt sed. Praesent ac placerat enim, eu bibendum ante. Integer et mauris suscipit, cursus magna nec, tempus velit. Vestibulum et semper quam. Aliquam a ipsum a sapien bibendum tempus in quis odio. Integer vel enim maximus, dignissim lorem eu, facilisis justo. Praesent rhoncus orci et eros eleifend, sit amet dictum mi ornare. Duis eget ante vel libero malesuada lacinia. Sed tempus gravida odio id dictum. In at congue tellus.</p>
-            <p>Nullam in ante non diam pretium malesuada. Maecenas elementum nisi id magna condimentum lacinia. In facilisis diam arcu, a lobortis mauris condimentum sed. Aliquam vitae iaculis erat. Pellentesque fringilla diam eget accumsan ultrices. Etiam massa nulla, sodales eu semper sed, molestie sit amet augue. Donec commodo lacinia egestas. Nulla pharetra diam lectus, sit amet bibendum massa venenatis vel. Praesent ut ultrices nisl. In vehicula turpis augue, vel sollicitudin turpis viverra sed. Nunc mollis elit et nulla tempor, vel eleifend eros dictum. Ut nisi velit, porta eu odio nec, aliquet imperdiet velit. Proin aliquam tempor metus, at hendrerit elit porta vitae. In eget sagittis quam, eu posuere magna. Fusce sit amet tristique turpis.</p>
-        </div>
+            <img src="{{ article.image }}" alt="">
+            {{ article.content | raw }}
     </article>
 {% endblock %}
