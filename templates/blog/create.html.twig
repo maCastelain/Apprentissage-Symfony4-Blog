@@ -1,25 +1,14 @@
 {% extends 'base.html.twig' %}
 
+{% form_theme formArticle 'bootstrap_4_layout.html.twig' %}
+
 {% block body %}
 
     <h1>Création d'un article</h1>
 
     {{ form_start(formArticle) }} {# Affiche la balise ouvrante du formulaire avec bonne méthode et bonne action #}
 
-        <div class="form-group">
-            <label for="">Titre</label>
-            {{ form_widget(formArticle.title) }}
-        </div>
-
-    <div class="form-group">
-        <label for="">Contenu</label>
-        {{ form_widget(formArticle.content) }}
-    </div>
-
-    <div class="form-group">
-        <label for="">Image</label>
-        {{ form_widget(formArticle.image) }}
-    </div>
+    {{ form_widget(formArticle) }} {# Twig : les templates : créer des templates de forms pour décider leur affichage #}
 
     {{ form_end(formArticle) }} {# #}
 

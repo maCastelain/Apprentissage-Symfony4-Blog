@@ -51,19 +51,16 @@ class BlogController extends AbstractController
                         // Pour donner des options HTML, je crée une clé 'attr' qui dispose de plusieurs attributs, parmi lesquels 'placeholder'.
                         'attr' => [
                             'placeholder' => "Titre de l'article",
-                            'class' => 'form-control'
                         ]
                     ] )
                     ->add('content', TextareaType::class, [
                         'attr' => [
                             'placeholder' => "Contenu de l'article",
-                            'class' => 'form-control'
                         ]
                     ])
                     ->add('image', TextType::class, [
                         'attr' => [
                             'placeholder' => "Image de l'article",
-                            'class' => 'form-control'
                         ]
                     ])
                     ->getForm();
