@@ -39,16 +39,20 @@ class BlogController extends AbstractController
 
     /**
      * @Route("/blog/new", name="blog_create")
+     * @Route("/blog/{id}/edit", name="blog_edit")
      */
-    public function create(Request $request, Objectmanager $manager) {
+    public function form(Article $article = null, Request $request, Objectmanager $manager) {
         // HttpFoundation\Request : la classe qui permet d'analyser-manipuler la requête HTTP
             // Parameterbag (dans le navigateur via inspection requête) : un objet qui renferme les données passées par le POST/GET
         // Doctrine : l'ObjectManager : permet de de gérer une ligne d'une table (insert/update/delete)
-        $article = new Article();
+        // function create devient form pour créer et éditer
 
-        $article->setTitle("Titre de l'exemple du tuto2") // Le formulaire est pré-rempli avec les données de l'article
-                ->setContent("Le contenu de l'article");
+        if(!$article) {
+            $article = new Article();
+        }
 
+/*        $article->setTitle("Titre de l'exemple du tuto2") // Le formulaire est pré-rempli avec les données de l'article
+                ->setContent("Le contenu de l'article");*/
 
         $form =$this->createFormBuilder($article)
                     ->add('title')
@@ -59,7 +63,9 @@ class BlogController extends AbstractController
         $form->handleRequest($request); // Le formulaire analyse la recherche et l'associe aux éléments title, content, image de l'article.
 
         if($form->isSubmitted() && $form->isValid()) {
-            $article->setCreatedAt(new \DateTime());
+            if(!$article->getId()) { // Si mon article ne dispose d'un id, il n'existe pas et je place une nouvelle date de création.
+                $article->setCreatedAt(new \DateTime());
+            }
 
             $manager->persist($article);
             $manager->flush();
