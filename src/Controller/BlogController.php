@@ -46,6 +46,10 @@ class BlogController extends AbstractController
         // Doctrine : l'ObjectManager : permet de de gérer une ligne d'une table (insert/update/delete)
         $article = new Article();
 
+        $article->setTitle("Titre de l'exemple du tuto2") // Le formulaire est pré-rempli avec les données de l'article
+                ->setContent("Le contenu de l'article");
+
+
         $form =$this->createFormBuilder($article)
                     ->add('title')
                     ->add('content')
