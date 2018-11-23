@@ -50,17 +50,20 @@ class BlogController extends AbstractController
                         // Possibilité de donner des paramètres à la fonction add : type (ne pas oublier le use) et les options du champ via un tableau d'options.
                         // Pour donner des options HTML, je crée une clé 'attr' qui dispose de plusieurs attributs, parmi lesquels 'placeholder'.
                         'attr' => [
-                            'placeholder' => "Titre de l'article"
+                            'placeholder' => "Titre de l'article",
+                            'class' => 'form-control'
                         ]
                     ] )
                     ->add('content', TextareaType::class, [
                         'attr' => [
-                            'placeholder' => "Contenu de l'article"
+                            'placeholder' => "Contenu de l'article",
+                            'class' => 'form-control'
                         ]
                     ])
                     ->add('image', TextType::class, [
                         'attr' => [
-                            'placeholder' => "Image de l'article"
+                            'placeholder' => "Image de l'article",
+                            'class' => 'form-control'
                         ]
                     ])
                     ->getForm();
