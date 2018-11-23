@@ -52,6 +52,17 @@ class BlogController extends AbstractController
                     ->add('image')
                     ->getForm();
 
+        $form->handleRequest($request); // Le formulaire analyse la recherche et l'associe aux éléments title, content, image de l'article.
+
+        if($form->isSubmitted() && $form->isValid()) {
+            $article->setCreatedAt(new \DateTime());
+
+            $manager->persist($article);
+            $manager->flush();
+
+            return $this->redirectToRoute('blog_show', ['id' => $article->getId()]);
+        }
+
         return $this->render('blog/create.html.twig', [
             'formArticle' => $form->createView()
         ]);
