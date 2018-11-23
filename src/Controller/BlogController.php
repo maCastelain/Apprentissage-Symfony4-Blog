@@ -4,8 +4,12 @@ namespace App\Controller;
 
 use App\Entity\Article;
 use App\Repository\ArticleRepository;
+use Doctrine\Common\Persistence\ObjectManager;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 class BlogController extends AbstractController
 {
@@ -35,8 +39,27 @@ class BlogController extends AbstractController
     /**
      * @Route("/blog/new", name="blog_create")
      */
-    public function create() {
-        return $this->render('blog/create.html.twig');
+    public function create(Request $request, Objectmanager $manager) {
+        // HttpFoundation\Request : la classe qui permet d'analyser-manipuler la requête HTTP
+            // Parameterbag (dans le navigateur via inspection requête) : un objet qui renferme les données passées par le POST/GET
+        // Doctrine : l'ObjectManager : permet de de gérer une ligne d'une table (insert/update/delete)
+        $article = new Article();
+
+        $form =$this->createFormBuilder($article)
+                    ->add('title', TextType::class, [
+                        // Possibilité de donner des paramètres à la fonction add : type (ne pas oublier le use) et les options du champ via un tableau d'options.
+                        // Pour donner des options HTML, je crée une clé 'attr' qui dispose de plusieurs attributs, parmi lesquels 'placeholder'.
+                        'attr' => [
+                            'placeholder' => "Titre de l'article"
+                        ]
+                    ] )
+                    ->add('content', TextareaType::class)
+                    ->add('image')
+                    ->getForm();
+
+        return $this->render('blog/create.html.twig', [
+            'formArticle' => $form->createView()
+        ]);
     }
 
     /**
