@@ -64,10 +64,6 @@ class BlogController extends AbstractController
                             'placeholder' => "Image de l'article",
                         ]
                     ])
-                    ->add('save', SubmitType::class, [
-                        'label' => 'Enregistrer'
-                        ]
-                    )
                     ->getForm();
 
         return $this->render('blog/create.html.twig', [
