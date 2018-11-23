@@ -47,23 +47,9 @@ class BlogController extends AbstractController
         $article = new Article();
 
         $form =$this->createFormBuilder($article)
-                    ->add('title', TextType::class, [
-                        // Possibilité de donner des paramètres à la fonction add : type (ne pas oublier le use) et les options du champ via un tableau d'options.
-                        // Pour donner des options HTML, je crée une clé 'attr' qui dispose de plusieurs attributs, parmi lesquels 'placeholder'.
-                        'attr' => [
-                            'placeholder' => "Titre de l'article",
-                        ]
-                    ])
-                    ->add('content', TextareaType::class, [
-                        'attr' => [
-                            'placeholder' => "Contenu de l'article",
-                        ]
-                    ])
-                    ->add('image', TextType::class, [
-                        'attr' => [
-                            'placeholder' => "Image de l'article",
-                        ]
-                    ])
+                    ->add('title')
+                    ->add('content')
+                    ->add('image')
                     ->getForm();
 
         return $this->render('blog/create.html.twig', [
