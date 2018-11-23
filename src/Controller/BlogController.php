@@ -53,8 +53,16 @@ class BlogController extends AbstractController
                             'placeholder' => "Titre de l'article"
                         ]
                     ] )
-                    ->add('content', TextareaType::class)
-                    ->add('image')
+                    ->add('content', TextareaType::class, [
+                        'attr' => [
+                            'placeholder' => "Contenu de l'article"
+                        ]
+                    ])
+                    ->add('image', TextType::class, [
+                        'attr' => [
+                            'placeholder' => "Image de l'article"
+                        ]
+                    ])
                     ->getForm();
 
         return $this->render('blog/create.html.twig', [
