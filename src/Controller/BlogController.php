@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Article;
 use App\Repository\ArticleRepository;
 use Doctrine\Common\Persistence\ObjectManager;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -52,7 +53,7 @@ class BlogController extends AbstractController
                         'attr' => [
                             'placeholder' => "Titre de l'article",
                         ]
-                    ] )
+                    ])
                     ->add('content', TextareaType::class, [
                         'attr' => [
                             'placeholder' => "Contenu de l'article",
@@ -63,6 +64,10 @@ class BlogController extends AbstractController
                             'placeholder' => "Image de l'article",
                         ]
                     ])
+                    ->add('save', SubmitType::class, [
+                        'label' => 'Enregistrer'
+                        ]
+                    )
                     ->getForm();
 
         return $this->render('blog/create.html.twig', [
