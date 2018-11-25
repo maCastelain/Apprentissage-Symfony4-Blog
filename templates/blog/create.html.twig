@@ -11,6 +11,7 @@
 
     {{ form_start(formArticle) }} {# Affiche la balise ouvrante du formulaire avec bonne méthode et bonne action #}
 
+    {#{{ form_error(formArticle.title) }} pour mettre en page les messages d'erreur dans le formulaire, voir documentation #}
     {{ form_row(formArticle.title, {'attr': {'placeholder':"Titre de l'article"}}) }} {# Twig : les templates : créer des templates de forms pour décider leur affichage #}
     {{ form_row(formArticle.content, {'attr': {'placeholder':"Contenu de l'article"}}) }} {# Twig : tableaux associatifs : on les écrit comme des objets en JS, c'est du json #}
     {{ form_row(formArticle.image, {'attr': {'placeholder':"URL de l'article"}}) }}
