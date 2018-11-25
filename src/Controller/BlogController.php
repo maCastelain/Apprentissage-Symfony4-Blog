@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Article;
+use App\Form\ArticleType;
 use App\Repository\ArticleRepository;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -54,11 +55,14 @@ class BlogController extends AbstractController
 /*        $article->setTitle("Titre de l'exemple du tuto2") // Le formulaire est pré-rempli avec les données de l'article
                 ->setContent("Le contenu de l'article");*/
 
-        $form =$this->createFormBuilder($article)
+/*        $form =$this->createFormBuilder($article)
                     ->add('title')
                     ->add('content')
                     ->add('image')
-                    ->getForm();
+                    ->getForm();*/
+        // Utilisation de la console pour créer un formulaire dossier src Form, ArticleType
+        // On utilise la méthode suivante, sans oublier le use ArticleType :
+        $form = $this->createForm(ArticleType::class, $article);
 
         $form->handleRequest($request); // Le formulaire analyse la recherche et l'associe aux éléments title, content, image de l'article.
 
