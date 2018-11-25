@@ -63,7 +63,7 @@ class BlogController extends AbstractController
         $form->handleRequest($request); // Le formulaire analyse la recherche et l'associe aux éléments title, content, image de l'article.
 
         if($form->isSubmitted() && $form->isValid()) {
-            if(!$article->getId()) { // Si mon article ne dispose d'un id, il n'existe pas et je place une nouvelle date de création.
+            if(!$article->getId()) { // Si mon article ne dispose  pas d'un id, il n'existe pas et je place une nouvelle date de création.
                 $article->setCreatedAt(new \DateTime());
             }
 
@@ -74,7 +74,9 @@ class BlogController extends AbstractController
         }
 
         return $this->render('blog/create.html.twig', [
-            'formArticle' => $form->createView()
+            'formArticle' => $form->createView(),
+            'editMode' => $article->getId() !== null
+            // Ajout d'une variable editMode qui renvoie à true si l'article existe et false dans le cas inverse dans l'optique de changer le bouton Ajout ou Editer.
         ]);
     }
 
