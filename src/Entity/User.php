@@ -29,9 +29,15 @@ class User
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(min="8", minMessage="Votre mot de passe doit faire minimum 8 caractères")
      */
+    //Assert\Length(...) : permet de valider la longueur min et max d'une chaîne !
+    //Assert\EqualTo(...) : valide le fait que le champ soit similaire à quelque chose d'autre.
     private $password;
 
+    /**
+     * @Assert\EqualTo(propertyPath="password", message="Vous n'avez pas tapé le même mot de passe.")
+     */
     public $confirm_password;
 
     public function getId(): ?int
