@@ -8,7 +8,7 @@ security:
         in_memory: { memory: ~ }
         in_database:
             entity:
-                class: App\entity\User
+                class: App\Entity\User
                 property: email
     firewalls:
         dev:
@@ -22,7 +22,6 @@ security:
             form_login:
                 login_path: security_login
                 check_path: security_login
-
             # activate different ways to authenticate
 
             # http_basic: true
