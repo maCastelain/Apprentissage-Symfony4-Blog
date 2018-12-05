@@ -5,10 +5,16 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
+ * @UniqueEntity(
+ *     fields={"email"},
+ *     message="L'email que vous avez indiqué est déjà utilisée !"
+ * )
  */
+//UniqueEntity(...) : permet d'assurer qu'un user est unique en fonction d'un champ
 class User implements UserInterface
 // UserInterface : l'interface qu'on doit implémenter si on veut créer des users
 {
@@ -21,8 +27,10 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255)
+     * Assert\Email()
      */
     private $email;
+    // Assert\Email() : valide que la donnée est bien une adresse email
 
     /**
      * @ORM\Column(type="string", length=255)
