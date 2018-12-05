@@ -13,6 +13,7 @@
                 {{ article.content | raw }}
                 <a href="{{ path('blog_show', {'id': article.id}) }}" class="btn btn-primary">Lire la suite</a>
             </div>
+            <br>
         </article>
         {% endfor %}
     </section>
